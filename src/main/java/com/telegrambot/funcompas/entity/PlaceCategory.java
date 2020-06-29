@@ -18,7 +18,6 @@ public class PlaceCategory {
 
 
     @OneToMany
-    //@JoinColumn(name="place_id", referencedColumnName = "categories_id")
     private final Set<Place> categories = new HashSet<>();
 
     public Set<Place> getCategories() {

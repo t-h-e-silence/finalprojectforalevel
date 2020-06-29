@@ -3,10 +3,6 @@ package com.telegrambot.funcompas.entity;
 import org.springframework.data.annotation.Id;
 
 import javax.persistence.*;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
 
 @Entity
 @Table(name = "places")

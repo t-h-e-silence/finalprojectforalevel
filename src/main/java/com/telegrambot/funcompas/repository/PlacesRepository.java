@@ -1,11 +1,8 @@
 package com.telegrambot.funcompas.repository;
 
 import com.telegrambot.funcompas.entity.Place;
-import com.telegrambot.funcompas.entity.PlaceCategory;
 import com.telegrambot.funcompas.entity.WorkingTime;
 import org.springframework.data.jpa.repository.JpaRepository;
-
-import java.util.Date;
 import java.util.List;
 
 public interface PlacesRepository extends JpaRepository<Place, Integer> {

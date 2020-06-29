@@ -10,6 +10,9 @@ public class Contact {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Integer id;
 
+    public Contact() {
+    }
+
     @Column
     private BigInteger number;
 

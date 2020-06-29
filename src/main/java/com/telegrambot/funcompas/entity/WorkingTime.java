@@ -6,13 +6,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-//@Entity
-//@Table(name="working_hours")
+
 @Embeddable
 public class WorkingTime implements Serializable{
-  //  @Id
-    //@GeneratedValue
-    //Integer id;
 
     @Column
     private Date open;

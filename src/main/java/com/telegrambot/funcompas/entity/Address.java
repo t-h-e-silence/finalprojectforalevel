@@ -9,6 +9,9 @@ public class Address {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Integer id;
 
+    public Address() {
+    }
+
     @Column
     private String city;
 
