@@ -1,11 +1,15 @@
 package com.telegrambot.funcompas.entity;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigInteger;
 
-@Table(name="contact")
+@Component
 @Entity
-public class Contact {
+@Table(name = "contact")
+public class Contact implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Integer id;
@@ -54,9 +58,16 @@ public class Contact {
         this.site = site;
     }
 
-    public Contact( BigInteger number, String name, String site) {
+    public Contact(BigInteger number, String name, String site) {
         this.number = number;
         this.name = name;
         this.site = site;
     }
+
+   @Override
+    public String toString() {
+        return String.format("%s%n  %s, %s%n", getName(), getNumber(), getSite());
+
+    }
+
 }

@@ -3,17 +3,12 @@ package com.telegrambot.funcompas;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.util.Properties;
-
 @SpringBootApplication
 public class FuncompasApplication {
-
+//https://api.telegram.org/bot1298895194:AAGPVnPHWzQukpNX5ytd2J0kYkvGEUGF4KA/setWebhook?url=https://bd41994c792b.ngrok.io
     public static void main(String[] args) {
 
-        SpringApplication.run(FuncompasApplication.class, args);
+       SpringApplication.run(FuncompasApplication.class, args);
     }
 
 }

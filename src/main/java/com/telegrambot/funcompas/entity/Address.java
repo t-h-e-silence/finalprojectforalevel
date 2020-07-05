@@ -1,10 +1,16 @@
 package com.telegrambot.funcompas.entity;
 
-import javax.persistence.*;
+import org.springframework.stereotype.Component;
 
+import javax.persistence.*;
+import java.io.Serializable;
+
+
+@Component
 @Entity
 @Table(name = "address")
-public class Address {
+public class Address implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     Integer id;
@@ -53,9 +59,15 @@ public class Address {
         this.number = number;
     }
 
-    public Address( String city, String street, Integer number) {
+    public Address(String city, String street, Integer number) {
         this.city = city;
         this.street = street;
         this.number = number;
     }
+
+   @Override
+    public String toString() {
+        return String.format("\n %s%n ул.%s %s", getCity(), getStreet(), getNumber());
+    }
+
 }
