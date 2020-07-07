@@ -12,7 +12,8 @@ import java.io.Serializable;
 public class Address implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_seq")
+    @SequenceGenerator(name="my_seq", sequenceName = "my_seq", allocationSize = 1)
     Integer id;
 
     public Address() {

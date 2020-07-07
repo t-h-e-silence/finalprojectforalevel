@@ -11,7 +11,8 @@ import java.math.BigInteger;
 @Table(name = "contact")
 public class Contact implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_seq")
+    @SequenceGenerator(name="my_seq", sequenceName = "my_seq", allocationSize = 1)
     Integer id;
 
     public Contact() {
@@ -66,7 +67,7 @@ public class Contact implements Serializable {
 
    @Override
     public String toString() {
-        return String.format("%s%n  %s, %s%n", getName(), getNumber(), getSite());
+        return String.format("%s%n  Телефон: %s, %s%n", getName(), getNumber(), getSite());
 
     }
 

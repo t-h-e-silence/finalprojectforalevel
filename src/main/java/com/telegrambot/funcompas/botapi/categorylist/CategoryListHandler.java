@@ -5,7 +5,6 @@ import com.telegrambot.funcompas.botapi.handlers.InputMessageHandler;
 import com.telegrambot.funcompas.cache.UserDataCache;
 import com.telegrambot.funcompas.entity.UserProfileData;
 import com.telegrambot.funcompas.service.ReplyMessagesService;
-import com.telegrambot.funcompas.service.UsersProfileDataService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -16,15 +15,12 @@ import java.util.List;
 
 @Component
 public class CategoryListHandler implements InputMessageHandler {
-    private UserDataCache userDataCache;
-    private ReplyMessagesService messagesService;
-    private UsersProfileDataService profileDataService;
+    private final UserDataCache userDataCache;
+    private final ReplyMessagesService messagesService;
 
-    public CategoryListHandler(UserDataCache userDataCache, ReplyMessagesService messagesService,
-                               UsersProfileDataService profileDataService) {
+    public CategoryListHandler(UserDataCache userDataCache, ReplyMessagesService messagesService) {
         this.userDataCache = userDataCache;
         this.messagesService = messagesService;
-        this.profileDataService = profileDataService;
     }
 
     @Override

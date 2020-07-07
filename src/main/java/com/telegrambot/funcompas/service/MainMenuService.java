@@ -9,15 +9,12 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.Keyboard
 import java.util.ArrayList;
 import java.util.List;
 
-/*Управляет отображением главного меню в чате*/
 @Service
 public class MainMenuService {
 
     public SendMessage getMainMenuMessage(final long chatId, final String textMessage) {
         final ReplyKeyboardMarkup replyKeyboardMarkup = getMainMenuKeyboard();
-        final SendMessage mainMenuMessage =
-                createMessageWithKeyboard(chatId, textMessage, replyKeyboardMarkup);
-        return mainMenuMessage;
+        return createMessageWithKeyboard(chatId, textMessage, replyKeyboardMarkup);
     }
 
     private ReplyKeyboardMarkup getMainMenuKeyboard() {
@@ -34,11 +31,13 @@ public class MainMenuService {
         KeyboardRow row3 = new KeyboardRow();
         KeyboardRow row4 = new KeyboardRow();
         row1.add(new KeyboardButton("Начать поиск"));
-        row2.add(new KeyboardButton("Избранные"));
-        row3.add(new KeyboardButton("Помощь"));
+        row2.add(new KeyboardButton("Смотреть избранные"));
+        row3.add(new KeyboardButton("Добавить избранные"));
+        row4.add(new KeyboardButton("Помощь"));
         keyboard.add(row1);
         keyboard.add(row2);
         keyboard.add(row3);
+        keyboard.add(row4);
 
         replyKeyboardMarkup.setKeyboard(keyboard);
         return replyKeyboardMarkup;

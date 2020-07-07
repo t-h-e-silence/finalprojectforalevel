@@ -34,6 +34,11 @@ public class PlaceMethodsService implements PlaceMethods {
     }
 
     @Override
+    public Optional<Place> findPlaceById(int id) {
+        return placesRepository.findPlaceById(id);
+    }
+
+    @Override
     public List<Place> findByTime(WorkingTimeOpen workingTimeOpen, WorkingTimeClose workingTimeClose) {
         return placesRepository.findByWorkingTimeOpenBeforeAndWorkingTimeCloseAfter(workingTimeOpen, workingTimeClose);
     }

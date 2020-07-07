@@ -14,6 +14,8 @@ public interface PlaceMethods {
 
     List<Place>  getByCategory(String categoryId);
 
+    Optional<Place> findPlaceById(int id);
+
     List<Place>  getByUserId(Long chatId);
 
     Optional<Place> getByName(String name);

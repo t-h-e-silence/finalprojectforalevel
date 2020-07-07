@@ -18,35 +18,28 @@ public class BotStateContext {
         messageHandlers.forEach(handler -> this.messageHandlers.put(handler.getHandlerName(), handler));
     }
 
-    public SendMessage processInputMessage(BotState currentState, Message message) {
+   public SendMessage processInputMessage(BotState currentState, Message message) {
         InputMessageHandler currentMessageHandler = findMessageHandler(currentState);
         return currentMessageHandler.handle(message);
     }
 
+
     private InputMessageHandler findMessageHandler(BotState currentState) {
         if (isFillingProfileState(currentState)) {
-            return messageHandlers.get(BotState.START_SEARCH);
+            return messageHandlers.get(BotState.ADD_TO_FAVORITE);
         }
 
         return messageHandlers.get(currentState);
     }
-
     private boolean isFillingProfileState(BotState currentState) {
         switch (currentState) {
-            case START_SEARCH:
-            case CATEGORIES:
-            case SEE_BY_CATEGORY:
-            case SELECT_TIME:
-            case SEE_ALL:
-            case ADD_TO_FAVORITE:
-            case SEE_FAVORITE:
+            case ASK_ID:
+            case PROFILE_FILLED:
                 return true;
             default:
                 return false;
         }
     }
-
-
 }
 
 

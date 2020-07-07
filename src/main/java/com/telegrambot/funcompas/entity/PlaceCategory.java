@@ -13,7 +13,8 @@ import java.util.*;
 @Table(name = "group_categories")
 public class PlaceCategory implements Serializable {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_seq")
+    @SequenceGenerator(name = "my_seq", sequenceName = "my_seq", allocationSize = 1)
     private Integer id;
     @NaturalId
     @Column(nullable = false)

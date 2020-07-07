@@ -9,34 +9,33 @@ import org.springframework.context.support.ReloadableResourceBundleMessageSource
 import org.telegram.telegrambots.bots.DefaultBotOptions;
 import org.telegram.telegrambots.meta.ApiContext;
 
-    @Configuration
-    @ConfigurationProperties(prefix = "telegrambot")
-    public class BotConfig {
-        private String webHookPath;
-        private String botUserName;
-        private String botToken;
+@Configuration
+@ConfigurationProperties(prefix = "telegrambot")
+public class BotConfig {
+    private String webHookPath;
+    private String botUserName;
+    private String botToken;
 
-        @Bean
-        public TelegramBot telegramBot(TelegramFacade telegramFacade) {
-            DefaultBotOptions options = ApiContext
-                    .getInstance(DefaultBotOptions.class);
-
-
-            TelegramBot telegramBot = new TelegramBot(options, telegramFacade);
-            telegramBot.setBotUserName(botUserName);
-            telegramBot.setBotToken(botToken);
-            telegramBot.setWebHookPath(webHookPath);
-
-            return telegramBot;
-        }
-
-        @Bean
-        public MessageSource messageSource() {
-            ReloadableResourceBundleMessageSource messageSource
-                    = new ReloadableResourceBundleMessageSource();
-
-            messageSource.setBasename("classpath:commands");
-            messageSource.setDefaultEncoding("UTF-8");
-            return messageSource;
-        }
+    public BotConfig() {
     }
+
+    @Bean
+    public TelegramBot telegramBot(TelegramFacade telegramFacade) {
+        TelegramBot telegramBot = new TelegramBot(telegramFacade);
+        telegramBot.setBotUserName(botUserName);
+        telegramBot.setBotToken(botToken);
+        telegramBot.setWebHookPath(webHookPath);
+
+        return telegramBot;
+    }
+
+    @Bean
+    public MessageSource messageSource() {
+        ReloadableResourceBundleMessageSource messageSource
+                = new ReloadableResourceBundleMessageSource();
+
+        messageSource.setBasename("classpath:commands");
+        messageSource.setDefaultEncoding("UTF-8");
+        return messageSource;
+    }
+}

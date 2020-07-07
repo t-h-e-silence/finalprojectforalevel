@@ -1,10 +1,10 @@
 package com.telegrambot.funcompas.entity;
 
-import org.springframework.data.annotation.Id;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 
 @Component
@@ -12,9 +12,9 @@ import java.io.Serializable;
 @Table(name = "places")
 public class Place implements Serializable {
 
-    @javax.persistence.Id
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "my_seq")
+    @SequenceGenerator(name="my_seq", sequenceName = "my_seq", allocationSize = 1)
     private Integer id;
 
 
@@ -42,8 +42,8 @@ public class Place implements Serializable {
     @ManyToOne
     private PlaceCategory categories;
 
-    @ManyToOne
-    private UserProfileData user;
+    @ManyToMany
+    private List<UserProfileData> user;
 
     public PlaceCategory getCategories() {
         return categories;
@@ -65,11 +65,11 @@ public class Place implements Serializable {
         this.workingTimeClose = workingTimeClose;
     }
 
-    public UserProfileData getUser() {
-        return user;
+    public  List<UserProfileData> getUser() {
+        return  user;
     }
 
-    public void setUser(UserProfileData user) {
+    public void setUser( List<UserProfileData> user) {
         this.user = user;
     }
 
@@ -117,21 +117,20 @@ public class Place implements Serializable {
         this.contact = contact;
     }
 
-    public Place(String name, WorkingTimeOpen workingTimeOpen, WorkingTimeClose workingTimeClose, String description, Address address, Contact contact, UserProfileData user) {
+    public Place(String name, WorkingTimeOpen workingTimeOpen, WorkingTimeClose workingTimeClose, String description, Address address, Contact contact) {
         this.name = name;
         this.workingTimeOpen = workingTimeOpen;
         this.workingTimeClose = workingTimeClose;
         this.description = description;
         this.address = address;
         this.contact = contact;
-        this.user = user;
     }
 
     @Override
     public String toString() {
-        return String.format("\nНазвание: %s%n\nОписание: %s%n\n  %s%n\n Контакты: %s%n" +
-                        "Время работы: %s%n", getName(), getDescription(), getAddress(), getContact(),
-                getWorkingTimeOpen().toString());
+        return String.format("%n%nНазвание: <b> %s%n </b> id: <b> %s </b>%nОписание: %s%n%n  %s%n%n Контакты:%n %s%n" +
+                        "Время работы: %s%n %s", getName(), getId(), getDescription(), getAddress(), getContact(),
+                getWorkingTimeOpen().toString(), getWorkingTimeClose().toString());
     }
 
 }

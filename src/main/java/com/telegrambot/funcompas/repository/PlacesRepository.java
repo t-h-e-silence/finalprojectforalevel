@@ -15,9 +15,11 @@ public interface PlacesRepository extends JpaRepository<Place, Integer> {
 
     List<Place> findPlaceByCategoriesName(String categoriesName);
 
-    List<Place> findByUserChatId(Long chatId);
+    List<Place> findByUserChatId(Long user_chatId);
 
     Optional<Place> findPlaceByName(String name);
+
+    Optional<Place> findPlaceById(int id);
 
 }
 

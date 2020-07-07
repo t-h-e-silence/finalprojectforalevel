@@ -9,6 +9,4 @@ public interface UsersRepository extends JpaRepository<UserProfileData, Long> {
 
     UserProfileData findByChatId(long chatId);
 
-    void save(long chatId);
-
 }

@@ -5,18 +5,16 @@ import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
-import org.telegram.telegrambots.bots.DefaultBotOptions;
-
 
 public class TelegramBot extends TelegramWebhookBot {
     private String webHookPath;
     private String botUserName;
     private String botToken;
 
-    private TelegramFacade telegramFacade;
+    private final TelegramFacade telegramFacade;
 
 
-    public TelegramBot(DefaultBotOptions botOptions, TelegramFacade telegramFacade) {
+    public TelegramBot(TelegramFacade telegramFacade) {
         this.telegramFacade = telegramFacade;
     }
 
@@ -36,10 +34,11 @@ public class TelegramBot extends TelegramWebhookBot {
         return webHookPath;
     }
 
+
     @Override
     public BotApiMethod<?> onWebhookUpdateReceived(Update update) {
-        final BotApiMethod<?> replyMessageToUser = telegramFacade.handleUpdate(update);
-
+        BotApiMethod<?> replyMessageToUser = null;
+        replyMessageToUser = telegramFacade.handleUpdate(update);
         return replyMessageToUser;
     }
 

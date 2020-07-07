@@ -1,32 +1,31 @@
 package com.telegrambot.funcompas.entity;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 
 @Entity
 @Table(name = "users")
 public class UserProfileData implements Serializable {
-    @javax.persistence.Id
-    @Id
-    @GeneratedValue
-    Integer id;
 
-    @Column
+    @Id
     Long chatId;
 
     public UserProfileData() {
     }
 
-    @OneToMany
-    private List<Place> favorite=new ArrayList<>();
+    @ManyToMany
+    private List<Place> favorite = new ArrayList<>();
 
     public List<Place> getFavorite() {
         return favorite;
+    }
+
+    public void addFavorite(Optional<Place> place) {
+        favorite.add(place.get());
     }
 
     public void setFavorite(List<Place> favorite) {
