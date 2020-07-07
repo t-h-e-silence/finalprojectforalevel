@@ -5,10 +5,12 @@ import com.telegrambot.funcompas.entity.WorkingTimeClose;
 import com.telegrambot.funcompas.entity.WorkingTimeOpen;
 import com.telegrambot.funcompas.repository.PlacesRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
 public class PlaceMethodsService implements PlaceMethods {
 

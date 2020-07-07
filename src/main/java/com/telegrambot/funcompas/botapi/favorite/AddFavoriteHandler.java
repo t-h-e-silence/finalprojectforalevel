@@ -73,7 +73,7 @@ public class AddFavoriteHandler implements InputMessageHandler  {
                 replyToUser = new SendMessage(chatId, profileFilledMessage);
             }
         }
-
+        usersAnswer=null;
         userDataCache.saveUserProfileData(userId, profileData);
         return replyToUser;
     }

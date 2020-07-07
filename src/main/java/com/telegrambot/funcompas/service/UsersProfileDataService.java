@@ -3,8 +3,9 @@ package com.telegrambot.funcompas.service;
 import com.telegrambot.funcompas.entity.UserProfileData;
 import com.telegrambot.funcompas.repository.UsersRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-
+@Transactional
 @Service
 public class UsersProfileDataService implements UserMethods {
     private final UsersRepository usersRepository;
