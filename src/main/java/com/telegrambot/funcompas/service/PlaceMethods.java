@@ -16,10 +16,4 @@ public interface PlaceMethods {
 
     Optional<Place> findPlaceById(int id);
 
-    List<Place>  getByUserId(Long chatId);
-
-    Optional<Place> getByName(String name);
-
-    List<Place>  findByTime(WorkingTimeOpen workingTimeOpen, WorkingTimeClose workingTimeClose);
-
 }

@@ -28,8 +28,20 @@ public class BotStateContext {
         if (isFillingProfileState(currentState)) {
             return messageHandlers.get(BotState.ADD_TO_FAVORITE);
         }
-
+        if (isDeletingProfileState(currentState)){
+            return  messageHandlers.get(BotState.DELETE_FAVORITE);
+        }
         return messageHandlers.get(currentState);
+    }
+
+    private boolean isDeletingProfileState(BotState currentState) {
+        switch (currentState) {
+            case ASK_ID:
+            case DELETE_BUTTON:
+                return true;
+            default:
+                return false;
+        }
     }
     private boolean isFillingProfileState(BotState currentState) {
         switch (currentState) {

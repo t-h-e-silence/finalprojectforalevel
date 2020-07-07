@@ -1,4 +1,4 @@
-package com.telegrambot.funcompas.botapi.menu;
+package com.telegrambot.funcompas.botapi.favorite;
 
 import com.telegrambot.funcompas.botapi.BotState;
 import com.telegrambot.funcompas.botapi.handlers.InputMessageHandler;
@@ -27,7 +27,7 @@ public class ShowFavoriteHandler implements InputMessageHandler {
         final int userId = message.getFrom().getId();
         final UserProfileData profileData = profileDataService.getUserProfileData(message.getChatId());
 
-        userDataCache.setUsersCurrentBotState(userId, BotState.MAIN_MENU);
+        userDataCache.setUsersCurrentBotState(userId, BotState.SHOW_HELP_MENU);
         if (profileData != null) {
             userReply = new SendMessage(message.getChatId(), "Понравившиеся: \n" + profileDataService.getUserProfileData(message.getChatId()).getFavorite().toString()).setParseMode("HTML");
 

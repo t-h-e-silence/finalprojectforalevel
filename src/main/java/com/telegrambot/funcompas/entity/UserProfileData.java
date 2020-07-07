@@ -2,9 +2,7 @@ package com.telegrambot.funcompas.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 
 @Entity
@@ -17,10 +15,15 @@ public class UserProfileData implements Serializable {
     public UserProfileData() {
     }
 
-    @ManyToMany
-    private List<Place> favorite = new ArrayList<>();
+    @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.REFRESH })
+    @JoinTable(
+            name = "users_favorite",
+            joinColumns = { @JoinColumn(name = "user_profile_data_chat_id") },
+            inverseJoinColumns = { @JoinColumn(name = "favorite_id") }
+    )
+    private Set<Place> favorite = new HashSet<>();
 
-    public List<Place> getFavorite() {
+    public Set<Place> getFavorite() {
         return favorite;
     }
 
@@ -28,7 +31,7 @@ public class UserProfileData implements Serializable {
         favorite.add(place.get());
     }
 
-    public void setFavorite(List<Place> favorite) {
+    public void setFavorite(Set<Place> favorite) {
         this.favorite = favorite;
     }
 

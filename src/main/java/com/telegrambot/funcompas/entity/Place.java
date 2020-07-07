@@ -4,7 +4,7 @@ import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.*;
 
 
 @Component
@@ -42,8 +42,8 @@ public class Place implements Serializable {
     @ManyToOne
     private PlaceCategory categories;
 
-    @ManyToMany
-    private List<UserProfileData> user;
+    @ManyToMany(mappedBy = "favorite")
+    private Set<UserProfileData> user=new HashSet<>();
 
     public PlaceCategory getCategories() {
         return categories;
@@ -65,11 +65,11 @@ public class Place implements Serializable {
         this.workingTimeClose = workingTimeClose;
     }
 
-    public  List<UserProfileData> getUser() {
+    public  Set<UserProfileData> getUser() {
         return  user;
     }
 
-    public void setUser( List<UserProfileData> user) {
+    public void setUser(Set<UserProfileData> user) {
         this.user = user;
     }
 
@@ -133,4 +133,24 @@ public class Place implements Serializable {
                 getWorkingTimeOpen().toString(), getWorkingTimeClose().toString());
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Place place = (Place) o;
+        return Objects.equals(getId(), place.getId()) &&
+                Objects.equals(getName(), place.getName()) &&
+                Objects.equals(getDescription(), place.getDescription()) &&
+                Objects.equals(getAddress(), place.getAddress()) &&
+                Objects.equals(getContact(), place.getContact()) &&
+                Objects.equals(getWorkingTimeOpen(), place.getWorkingTimeOpen()) &&
+                Objects.equals(getWorkingTimeClose(), place.getWorkingTimeClose()) &&
+                Objects.equals(getCategories(), place.getCategories()) &&
+                Objects.equals(getUser(), place.getUser());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getName(), getDescription(), getAddress(), getContact(), getWorkingTimeOpen(), getWorkingTimeClose(), getCategories(), getUser());
+    }
 }

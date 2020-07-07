@@ -63,16 +63,19 @@ public class TelegramFacade {
             case "Помощь":
                 botState = BotState.SHOW_HELP_MENU;
                 break;
-            case "Начать поиск":
+           case "Начать поиск":
                 botState = BotState.START_SEARCH;
                 break;
             case "Смотреть избранные":
                 botState = BotState.SEE_FAVORITE;
                 break;
+            case  "Удалить избранные":
+                botState= BotState.DELETE_FAVORITE;
+                break;
             case "Добавить избранные":
                 botState=BotState.ADD_TO_FAVORITE;
                 break;
-           
+
             default:
                 botState = userDataCache.getUsersCurrentBotState(userId);
                 break;

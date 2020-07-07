@@ -7,7 +7,7 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 public interface ButtonHandler {
 
-    BotApiMethod<?> handle(CallbackQuery buttonQuery) throws TelegramApiException;
+    BotApiMethod<?> handle(CallbackQuery buttonQuery);
 
     BotState getHandlerName();
 }

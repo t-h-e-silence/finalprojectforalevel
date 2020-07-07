@@ -30,14 +30,17 @@ public class MainMenuService {
         KeyboardRow row2 = new KeyboardRow();
         KeyboardRow row3 = new KeyboardRow();
         KeyboardRow row4 = new KeyboardRow();
+        KeyboardRow row5 = new KeyboardRow();
         row1.add(new KeyboardButton("Начать поиск"));
         row2.add(new KeyboardButton("Смотреть избранные"));
         row3.add(new KeyboardButton("Добавить избранные"));
-        row4.add(new KeyboardButton("Помощь"));
+        row4.add(new KeyboardButton("Удалить избранные"));
+        row5.add(new KeyboardButton("Помощь"));
         keyboard.add(row1);
         keyboard.add(row2);
         keyboard.add(row3);
         keyboard.add(row4);
+        keyboard.add(row5);
 
         replyKeyboardMarkup.setKeyboard(keyboard);
         return replyKeyboardMarkup;

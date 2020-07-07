@@ -19,16 +19,6 @@ public class PlaceMethodsService implements PlaceMethods {
     }
 
     @Override
-    public List<Place> getByUserId(Long id) {
-        return placesRepository.findByUserChatId(id);
-    }
-
-    @Override
-    public Optional<Place> getByName(String name) {
-        return placesRepository.findPlaceByName(name);
-    }
-
-    @Override
     public List<Place> getByCategory(String categorieName) {
         return placesRepository.findPlaceByCategoriesName(categorieName);
     }
@@ -36,11 +26,6 @@ public class PlaceMethodsService implements PlaceMethods {
     @Override
     public Optional<Place> findPlaceById(int id) {
         return placesRepository.findPlaceById(id);
-    }
-
-    @Override
-    public List<Place> findByTime(WorkingTimeOpen workingTimeOpen, WorkingTimeClose workingTimeClose) {
-        return placesRepository.findByWorkingTimeOpenBeforeAndWorkingTimeCloseAfter(workingTimeOpen, workingTimeClose);
     }
 
 }

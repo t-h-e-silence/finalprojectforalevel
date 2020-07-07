@@ -1,4 +1,4 @@
-package com.telegrambot.funcompas.botapi.menu;
+package com.telegrambot.funcompas.botapi.favorite;
 
 import com.telegrambot.funcompas.botapi.BotState;
 import com.telegrambot.funcompas.botapi.handlers.InputMessageHandler;
@@ -11,19 +11,18 @@ import com.telegrambot.funcompas.service.UsersProfileDataService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Message;
-
 import java.util.Optional;
 
 @Component
-public class AddFavoriteHandler implements InputMessageHandler {
+public class AddFavoriteHandler implements InputMessageHandler  {
 
     private final UserDataCache userDataCache;
     private final ReplyMessagesService messagesService;
     private final PlaceMethodsService placeMethodsService;
     private final UsersProfileDataService profileDataService;
 
-    public AddFavoriteHandler(UserDataCache userDataCache, ReplyMessagesService messagesService
-            , PlaceMethodsService placeMethodsService, UsersProfileDataService profileDataService) {
+    public AddFavoriteHandler(UserDataCache userDataCache, ReplyMessagesService messagesService,
+                              PlaceMethodsService placeMethodsService, UsersProfileDataService profileDataService) {
         this.userDataCache = userDataCache;
         this.messagesService = messagesService;
         this.placeMethodsService = placeMethodsService;
@@ -61,22 +60,24 @@ public class AddFavoriteHandler implements InputMessageHandler {
         if (botState.equals(BotState.PROFILE_FILLED)) {
             profileData.setChatId(chatId);
             Optional<Place> favorite = placeMethodsService.findPlaceById(Integer.parseInt(usersAnswer));
-            profileData.addFavorite(favorite);
-            profileDataService.save(profileData);
+            if (favorite.isEmpty()) {
+                replyToUser = new SendMessage(chatId, "Элемент с таким id не найден!");
+            } else {
+                profileData.addFavorite(favorite);
+                profileDataService.save(profileData);
 
-            userDataCache.setUsersCurrentBotState(userId, BotState.MAIN_MENU);
+                userDataCache.setUsersCurrentBotState(userId, BotState.MAIN_MENU);
 
-            String profileFilledMessage = messagesService.getReplyText("reply.profileFilled",
-                    profileData.getFavorite().toString());
-            replyToUser = new SendMessage(chatId, profileFilledMessage);
-
+                String profileFilledMessage = messagesService.getReplyText("reply.profileFilled",
+                        profileData.getFavorite().toString());
+                replyToUser = new SendMessage(chatId, profileFilledMessage);
+            }
         }
 
         userDataCache.saveUserProfileData(userId, profileData);
-
         return replyToUser;
     }
-
 }
+
 
 
