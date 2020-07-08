@@ -3,11 +3,21 @@
     {
       "name": "spring.datasource.user",
       "type": "java.lang.String",
-      "description": "postgres."
+      "description": "postgres.user."
     },
     {
       "name": "bot.name",
       "type": "java.lang.String",
       "description": "Description for bot.name."
+    },
+    {
+      "name": "telegrambot.webHookPath",
+      "type": "java.lang.String",
+      "description": "Description for telegrambot.webHookPath."
+    },
+    {
+      "name": "subscription.processPeriod",
+      "type": "java.lang.String",
+      "description": "Description for subscription.processPeriod."
     }
   ] }
