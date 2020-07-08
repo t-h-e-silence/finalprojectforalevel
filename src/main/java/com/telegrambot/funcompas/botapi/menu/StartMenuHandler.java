@@ -2,7 +2,6 @@ package com.telegrambot.funcompas.botapi.menu;
 
 import com.telegrambot.funcompas.botapi.BotState;
 import com.telegrambot.funcompas.botapi.handlers.InputMessageHandler;
-import com.telegrambot.funcompas.service.MainMenuService;
 import com.telegrambot.funcompas.service.ReplyMessagesService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

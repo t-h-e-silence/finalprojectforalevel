@@ -1,4 +1,4 @@
-package com.telegrambot.funcompas.service;
+package com.telegrambot.funcompas.botapi.menu;
 
 import org.springframework.stereotype.Service;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

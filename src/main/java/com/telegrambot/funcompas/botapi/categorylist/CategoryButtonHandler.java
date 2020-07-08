@@ -5,7 +5,7 @@ import com.telegrambot.funcompas.botapi.handlers.ButtonHandler;
 import com.telegrambot.funcompas.cache.UserDataCache;
 import com.telegrambot.funcompas.entity.Place;
 import com.telegrambot.funcompas.service.PlaceMethodsService;
-import com.telegrambot.funcompas.service.MainMenuService;
+import com.telegrambot.funcompas.botapi.menu.MainMenuService;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -50,7 +50,7 @@ public class CategoryButtonHandler implements ButtonHandler {
                 callBackAnswer = new SendMessage(chatId, "Найти по категории:\n Рестораны \n" + placeList.toString()).setParseMode("HTML");
                 break;
             case "buttonShop":
-                placeList = placeMethodsService.getByCategory("Tорговые центры");
+                placeList = placeMethodsService.getByCategory("Торговые центры");
                 callBackAnswer = new SendMessage(chatId, "Найти по категории:\n Tорговые центры \n" + placeList.toString()).setParseMode("HTML");
                 break;
             case "buttonQuest":
