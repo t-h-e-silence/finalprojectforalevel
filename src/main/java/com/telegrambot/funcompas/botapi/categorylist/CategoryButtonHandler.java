@@ -49,10 +49,12 @@ public class CategoryButtonHandler implements ButtonHandler {
                 placeList = placeMethodsService.getByCategory("Рестораны");
                 callBackAnswer = new SendMessage(chatId, "Найти по категории:\n Рестораны \n" + placeList.toString()).setParseMode("HTML");
                 break;
+
             case "buttonShop":
                 placeList = placeMethodsService.getByCategory("Торговые центры");
                 callBackAnswer = new SendMessage(chatId, "Найти по категории:\n Tорговые центры \n" + placeList.toString()).setParseMode("HTML");
                 break;
+
             case "buttonQuest":
                 placeList = placeMethodsService.getByCategory("Квест-комнаты");
                 callBackAnswer = new SendMessage(chatId, "Найти по категории:\n Квест-комнаты \n" + placeList.toString()).setParseMode("HTML");
